@@ -163,7 +163,7 @@ mids.each do |mid|
               while tpage.nil? || tpage <= tall_pages
                 tparams = {}
                 tparams[:page] = tpage unless tpage.nil?
-                turl = path_to_url(threads_url, params: params)
+                turl = path_to_url(threads_url, params: tparams)
                 jtresp = helpscout_api_get(turl)
                 tresp = JSON.parse(jtresp)
                 raise "invalid threads response received from #{turl}: #{tresp}" unless tresp.is_a?(Hash)
