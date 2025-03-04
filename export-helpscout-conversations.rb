@@ -66,6 +66,9 @@ def helpscout_api_get(path, data={}, opts={})
   check_rate_limit
   url = path_to_url(path, opts)
   resp = RestClient.get(url, header)
+  return resp
+rescue RestClient::InternalServerError, RestClient::Exceptions::OpenTimeout
+  retry
 end
 
 def check_rate_limit
